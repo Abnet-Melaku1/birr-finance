@@ -21,7 +21,13 @@ const config: ExpoConfig = {
     supportsTablet: false,
     bundleIdentifier: 'com.marketpal.birr',
   },
-  plugins: ['expo-router', 'expo-font', 'expo-sqlite', 'expo-dev-client'],
+  plugins: [
+    'expo-router',
+    'expo-font',
+    'expo-sqlite',
+    'expo-dev-client',
+    './plugins/withSmsReceiver',
+  ],
   experiments: {
     typedRoutes: true,
   },

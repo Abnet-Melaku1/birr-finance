@@ -1,9 +1,10 @@
 import { create } from 'zustand';
 
-import { mockRepo, type DataRepo, type DataSnapshot } from '@/lib/data/repo';
+import { createRepo } from '@/lib/data/createRepo';
+import type { DataSnapshot } from '@/lib/data/repo';
 import type { CategoryKey, Tx } from '@/lib/data/types';
 
-const repo: DataRepo = mockRepo;
+const repo = createRepo();
 
 interface DataState extends DataSnapshot {
   addTransaction: (tx: Tx) => void;

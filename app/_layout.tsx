@@ -10,6 +10,8 @@ import { SpaceMono_400Regular } from '@expo-google-fonts/space-mono';
 import { Stack } from 'expo-router';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { SmsCapture } from '@/features/sms/SmsCapture';
+
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
     PlusJakartaSans_400Regular,
@@ -24,6 +26,7 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
+      <SmsCapture />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(tabs)" />
         <Stack.Screen name="sms" />
