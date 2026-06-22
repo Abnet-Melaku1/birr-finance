@@ -1,7 +1,7 @@
 import { View } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 import { tint } from '@/lib/money';
-import { radii, useTheme } from '@/theme';
 
 import { AppText } from './AppText';
 
@@ -14,22 +14,22 @@ export interface MonogramProps {
 }
 
 export function Monogram({ label, color, size = 40 }: MonogramProps) {
-  const t = useTheme();
-  const bg = tint(color, t.surface, t.mode === 'dark' ? 26 : 15);
   return (
-    <View
-      style={{
-        width: size,
-        height: size,
-        borderRadius: radii.monogram,
-        backgroundColor: bg,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <View style={styles.tile(color, size)}>
       <AppText variant="cardTitle" color={color}>
         {label.charAt(0).toUpperCase()}
       </AppText>
     </View>
   );
 }
+
+const styles = StyleSheet.create((theme) => ({
+  tile: (color: string, size: number) => ({
+    width: size,
+    height: size,
+    borderRadius: theme.radii.monogram,
+    backgroundColor: tint(color, theme.surface, theme.mode === 'dark' ? 26 : 15),
+    alignItems: 'center',
+    justifyContent: 'center',
+  }),
+}));

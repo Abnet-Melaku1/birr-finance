@@ -1,7 +1,7 @@
 import { Pressable, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { StyleSheet } from 'react-native-unistyles';
 
-import { fabElevation, radii, useTheme } from '@/theme';
+import { fabElevation, useTheme } from '@/theme';
 
 import { AppText } from './AppText';
 import { Icon, type IconName } from './Icon';
@@ -23,20 +23,8 @@ export interface BottomNavProps {
 
 export function BottomNav({ active, onSelect, onAdd }: BottomNavProps) {
   const t = useTheme();
-  const insets = useSafeAreaInsets();
-
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'flex-start',
-        backgroundColor: t.navBg,
-        paddingTop: 8,
-        paddingBottom: insets.bottom + 6,
-        borderTopWidth: t.mode === 'dark' ? 1 : 0,
-        borderTopColor: t.hairline,
-      }}
-    >
+    <View style={styles.bar}>
       {TABS.slice(0, 2).map((tab) => (
         <TabItem
           key={tab.key}
@@ -46,22 +34,12 @@ export function BottomNav({ active, onSelect, onAdd }: BottomNavProps) {
         />
       ))}
 
-      <View style={{ flex: 1, alignItems: 'center' }}>
+      <View style={styles.fabSlot}>
         <Pressable
           onPress={onAdd}
           accessibilityRole="button"
           accessibilityLabel="Add transaction"
-          style={({ pressed }) => ({
-            width: 56,
-            height: 56,
-            borderRadius: radii.fab,
-            backgroundColor: t.primary,
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: -24,
-            opacity: pressed ? 0.85 : 1,
-            ...fabElevation(t),
-          })}
+          style={({ pressed }) => [styles.fab, pressed && styles.pressed]}
         >
           <Icon name="plus" color={t.onPrimary} size={26} />
         </Pressable>
@@ -90,21 +68,15 @@ function TabItem({
 }) {
   const t = useTheme();
   const color = active ? t.primary : t.sub;
+  styles.useVariants({ active });
   return (
     <Pressable
       onPress={onPress}
       accessibilityRole="tab"
       accessibilityState={{ selected: active }}
-      style={{ flex: 1, alignItems: 'center', gap: 3 }}
+      style={styles.tab}
     >
-      <View
-        style={{
-          paddingHorizontal: 16,
-          paddingVertical: 5,
-          borderRadius: radii.pill,
-          backgroundColor: active ? t.primarySoft : 'transparent',
-        }}
-      >
+      <View style={styles.pill}>
         <Icon name={tab.icon} color={color} size={20} />
       </View>
       <AppText variant="micro" color={color}>
@@ -113,3 +85,39 @@ function TabItem({
     </Pressable>
   );
 }
+
+const styles = StyleSheet.create((theme, rt) => ({
+  bar: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    backgroundColor: theme.navBg,
+    paddingTop: 8,
+    paddingBottom: rt.insets.bottom + 6,
+    borderTopWidth: theme.mode === 'dark' ? 1 : 0,
+    borderTopColor: theme.hairline,
+  },
+  fabSlot: { flex: 1, alignItems: 'center' },
+  fab: {
+    width: 56,
+    height: 56,
+    borderRadius: theme.radii.fab,
+    backgroundColor: theme.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: -24,
+    ...fabElevation(theme),
+  },
+  pressed: { opacity: 0.85 },
+  tab: { flex: 1, alignItems: 'center', gap: 3 },
+  pill: {
+    paddingHorizontal: 16,
+    paddingVertical: 5,
+    borderRadius: theme.radii.pill,
+    variants: {
+      active: {
+        true: { backgroundColor: theme.primarySoft },
+        false: { backgroundColor: 'transparent' },
+      },
+    },
+  },
+}));

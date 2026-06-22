@@ -1,8 +1,9 @@
 import { Pressable, View } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 import type { Direction } from '@/lib/data/keys';
 import type { Money } from '@/lib/money';
-import { radii, useTheme } from '@/theme';
+import { useTheme } from '@/theme';
 
 import { Amount } from './Amount';
 import { AppText } from './AppText';
@@ -37,21 +38,15 @@ export function TxRow({
     <Pressable
       onPress={onPress}
       accessibilityRole="button"
-      style={({ pressed }) => ({
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 12,
-        paddingVertical: 8,
-        opacity: pressed ? 0.6 : 1,
-      })}
+      style={({ pressed }) => [styles.row, pressed && styles.pressed]}
     >
       <CatIcon name={icon} color={iconColor} />
-      <View style={{ flex: 1 }}>
+      <View style={styles.body}>
         <AppText variant="cardTitle" color={t.ink} numberOfLines={1}>
           {merchant}
         </AppText>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 1 }}>
-          <AppText variant="secondary" color={t.sub} numberOfLines={1} style={{ flexShrink: 1 }}>
+        <View style={styles.subRow}>
+          <AppText variant="secondary" color={t.sub} numberOfLines={1} style={styles.sub}>
             {sub}
           </AppText>
           {parsed ? <SmsBadge /> : null}
@@ -65,17 +60,7 @@ export function TxRow({
 function SmsBadge() {
   const t = useTheme();
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 3,
-        paddingHorizontal: 6,
-        paddingVertical: 2,
-        borderRadius: radii.pill,
-        backgroundColor: t.primarySoft,
-      }}
-    >
+    <View style={styles.badge}>
       <Icon name="scan" color={t.primary} size={9} />
       <AppText variant="micro" color={t.primary}>
         SMS
@@ -83,3 +68,25 @@ function SmsBadge() {
     </View>
   );
 }
+
+const styles = StyleSheet.create((theme) => ({
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    paddingVertical: 8,
+  },
+  pressed: { opacity: 0.6 },
+  body: { flex: 1 },
+  subRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 1 },
+  sub: { flexShrink: 1 },
+  badge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 3,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: theme.radii.pill,
+    backgroundColor: theme.primarySoft,
+  },
+}));

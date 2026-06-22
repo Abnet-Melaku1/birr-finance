@@ -1,9 +1,7 @@
-import type { ViewStyle } from 'react-native';
-
 import type { Theme } from './Theme';
 
 /** Soft shadow in light; 1px hairline border (no shadow) in dark. */
-export function cardElevation(theme: Theme): ViewStyle {
+export function cardElevation(theme: Theme) {
   if (theme.mode === 'dark') {
     return { borderWidth: 1, borderColor: theme.hairline };
   }
@@ -17,7 +15,7 @@ export function cardElevation(theme: Theme): ViewStyle {
 }
 
 /** Orange glow under the raised FAB. */
-export function fabElevation(theme: Theme): ViewStyle {
+export function fabElevation(theme: Theme) {
   return {
     shadowColor: theme.primary,
     shadowOpacity: 0.35,

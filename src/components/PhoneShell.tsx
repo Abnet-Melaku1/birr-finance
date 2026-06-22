@@ -1,8 +1,6 @@
 import type { ReactNode } from 'react';
 import { View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-import { useTheme } from '@/theme';
+import { StyleSheet } from 'react-native-unistyles';
 
 import { StatusBar } from './StatusBar';
 
@@ -11,12 +9,18 @@ export interface PhoneShellProps {
 }
 
 export function PhoneShell({ children }: PhoneShellProps) {
-  const t = useTheme();
-  const insets = useSafeAreaInsets();
   return (
-    <View style={{ flex: 1, backgroundColor: t.bg, paddingTop: insets.top }}>
+    <View style={styles.shell}>
       <StatusBar />
       {children}
     </View>
   );
 }
+
+const styles = StyleSheet.create((theme, rt) => ({
+  shell: {
+    flex: 1,
+    backgroundColor: theme.bg,
+    paddingTop: rt.insets.top,
+  },
+}));

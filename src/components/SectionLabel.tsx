@@ -1,4 +1,5 @@
 import { Pressable, View } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 import { useTheme } from '@/theme';
 
@@ -6,7 +7,6 @@ import { AppText } from './AppText';
 
 export interface SectionLabelProps {
   title: string;
-  /** Optional right-aligned action link (e.g. "See all"). */
   action?: string;
   onActionPress?: () => void;
 }
@@ -14,14 +14,7 @@ export interface SectionLabelProps {
 export function SectionLabel({ title, action, onActionPress }: SectionLabelProps) {
   const t = useTheme();
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginBottom: 12,
-      }}
-    >
+    <View style={styles.row}>
       <AppText variant="sectionLabel" color={t.ink}>
         {title}
       </AppText>
@@ -35,3 +28,12 @@ export function SectionLabel({ title, action, onActionPress }: SectionLabelProps
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 12,
+  },
+});

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Animated, View } from 'react-native';
+import { Animated } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
 import { clamp } from '@/lib/money';
-import { radii, useTheme } from '@/theme';
+import { useTheme } from '@/theme';
 
 export interface ProgressBarProps {
   /** Usage ratio; > 1 means over budget (fill switches to `primary`). */
@@ -30,22 +31,23 @@ export function ProgressBar({ ratio, color, height = 8, animate = true }: Progre
   const width = anim.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] });
 
   return (
-    <View
-      style={{
-        height,
-        borderRadius: radii.pill,
-        backgroundColor: t.faint,
-        overflow: 'hidden',
-      }}
-    >
+    <Animated.View style={styles.track(height)}>
       <Animated.View
-        style={{
-          width,
-          height: '100%',
-          borderRadius: radii.pill,
-          backgroundColor: over ? t.primary : (color ?? t.ink),
-        }}
+        style={[styles.fill, { width, backgroundColor: over ? t.primary : (color ?? t.ink) }]}
       />
-    </View>
+    </Animated.View>
   );
 }
+
+const styles = StyleSheet.create((theme) => ({
+  track: (height: number) => ({
+    height,
+    borderRadius: theme.radii.pill,
+    backgroundColor: theme.faint,
+    overflow: 'hidden',
+  }),
+  fill: {
+    height: '100%',
+    borderRadius: theme.radii.pill,
+  },
+}));

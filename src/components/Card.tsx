@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react';
 import { View, type StyleProp, type ViewStyle } from 'react-native';
+import { StyleSheet } from 'react-native-unistyles';
 
-import { cardElevation, radii, space, useTheme } from '@/theme';
+import { cardElevation } from '@/theme';
 
 export interface CardProps {
   children: ReactNode;
@@ -10,20 +11,20 @@ export interface CardProps {
 }
 
 export function Card({ children, style, padded = true }: CardProps) {
-  const t = useTheme();
-  return (
-    <View
-      style={[
-        {
-          backgroundColor: t.surface,
-          borderRadius: radii.card,
-          padding: padded ? space.card : 0,
-        },
-        cardElevation(t),
-        style,
-      ]}
-    >
-      {children}
-    </View>
-  );
+  styles.useVariants({ padded });
+  return <View style={[styles.card, style]}>{children}</View>;
 }
+
+const styles = StyleSheet.create((theme) => ({
+  card: {
+    backgroundColor: theme.surface,
+    borderRadius: theme.radii.card,
+    ...cardElevation(theme),
+    variants: {
+      padded: {
+        true: { padding: theme.space.card },
+        false: { padding: 0 },
+      },
+    },
+  },
+}));
