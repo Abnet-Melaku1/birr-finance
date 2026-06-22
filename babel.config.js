@@ -12,8 +12,7 @@ module.exports = function (api) {
           extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
         },
       ],
-      // keep this LAST if you add reanimated:
-      // 'react-native-reanimated/plugin',
+      ['react-native-unistyles/plugin', { root: 'src' }],
     ],
   };
 };

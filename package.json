@@ -1,7 +1,7 @@
 {
   "name": "birr-finance",
   "version": "0.1.0",
-  "main": "expo-router/entry",
+  "main": "index.ts",
   "private": true,
   "packageManager": "pnpm@9.15.0",
   "scripts": {
@@ -22,7 +22,11 @@
   },
   "jest": {
     "preset": "jest-expo",
-    "setupFiles": ["<rootDir>/jest.setup.js"]
+    "setupFiles": [
+      "react-native-unistyles/mocks",
+      "<rootDir>/src/theme/unistyles.ts",
+      "<rootDir>/jest.setup.js"
+    ]
   },
   "dependencies": {
     "@expo-google-fonts/plus-jakarta-sans": "^0.4.1",
@@ -40,9 +44,11 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.85.3",
+    "react-native-nitro-modules": "0.35.9",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.25.2",
     "react-native-svg": "15.15.4",
+    "react-native-unistyles": "^3.2.5",
     "zod": "^4.4.3",
     "zustand": "^5.0.8"
   },

@@ -10,8 +10,6 @@ import { SpaceMono_400Regular } from '@expo-google-fonts/space-mono';
 import { Stack } from 'expo-router';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { ThemeProvider } from '@/theme';
-
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
     PlusJakartaSans_400Regular,
@@ -26,23 +24,21 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <ThemeProvider>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="sms" />
-          <Stack.Screen name="accounts" />
-          <Stack.Screen name="goals" />
-          <Stack.Screen name="settings" />
-          <Stack.Screen
-            name="add"
-            options={{ presentation: 'transparentModal', animation: 'none' }}
-          />
-          <Stack.Screen
-            name="tx/[id]"
-            options={{ presentation: 'transparentModal', animation: 'none' }}
-          />
-        </Stack>
-      </ThemeProvider>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="sms" />
+        <Stack.Screen name="accounts" />
+        <Stack.Screen name="goals" />
+        <Stack.Screen name="settings" />
+        <Stack.Screen
+          name="add"
+          options={{ presentation: 'transparentModal', animation: 'none' }}
+        />
+        <Stack.Screen
+          name="tx/[id]"
+          options={{ presentation: 'transparentModal', animation: 'none' }}
+        />
+      </Stack>
     </SafeAreaProvider>
   );
 }
