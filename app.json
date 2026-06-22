@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "Birr",
+    "slug": "birr-finance",
+    "scheme": "birr",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "android": {
+      "package": "com.marketpal.birr",
+      "permissions": ["RECEIVE_SMS", "READ_SMS"]
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.marketpal.birr"
+    },
+    "plugins": ["expo-font", "expo-sqlite", "expo-dev-client"]
+  }
+}
