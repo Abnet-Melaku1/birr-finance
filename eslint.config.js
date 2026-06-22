@@ -8,6 +8,7 @@ module.exports = [
   ...expoConfig,
   eslintConfigPrettier,
   {
+    files: ['**/*.ts', '**/*.tsx'],
     rules: {
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-non-null-assertion': 'warn',
@@ -47,6 +48,7 @@ module.exports = [
       'babel.config.js',
       'eslint.config.js',
       'metro.config.js',
+      'jest.setup.js',
     ],
   },
 ];
