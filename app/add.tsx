@@ -1,12 +1,3 @@
-import { useRouter } from 'expo-router';
+import { AddSheet } from '@/features/transactions/components/AddSheet';
 
-import { AppText, Sheet } from '@/components';
-
-export default function AddModal() {
-  const router = useRouter();
-  return (
-    <Sheet title="Add transaction" onClose={() => router.back()}>
-      <AppText>Add form</AppText>
-    </Sheet>
-  );
-}
+export default AddSheet;

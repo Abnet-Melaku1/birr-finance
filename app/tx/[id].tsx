@@ -1,13 +1,8 @@
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 
-import { AppText, Sheet } from '@/components';
+import { TxDetailSheet } from '@/features/transactions/components/TxDetailSheet';
 
-export default function TxDetailModal() {
+export default function TxDetailRoute() {
   const { id } = useLocalSearchParams<{ id: string }>();
-  const router = useRouter();
-  return (
-    <Sheet title="Transaction" onClose={() => router.back()}>
-      <AppText>Transaction {id}</AppText>
-    </Sheet>
-  );
+  return <TxDetailSheet id={id} />;
 }
