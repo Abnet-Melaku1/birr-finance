@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { ScrollView, View } from 'react-native';
+import { Pressable, ScrollView, View } from 'react-native';
 import { StyleSheet } from 'react-native-unistyles';
 
 import { AppText, Card, IconBtn, PhoneShell, SectionLabel, TxRow } from '@/components';
@@ -23,11 +23,16 @@ export function DashboardScreen() {
     <PhoneShell>
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.greeting}>
-          <View style={styles.avatar}>
+          <Pressable
+            onPress={() => router.push('/settings')}
+            accessibilityRole="button"
+            accessibilityLabel="Settings"
+            style={styles.avatar}
+          >
             <AppText variant="cardTitle" color={t.primary}>
               {user.initials}
             </AppText>
-          </View>
+          </Pressable>
           <View style={styles.greetingText}>
             <AppText variant="secondary" color={t.sub}>
               Good morning

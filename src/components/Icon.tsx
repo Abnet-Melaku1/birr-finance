@@ -33,6 +33,7 @@ export type IconName =
   | 'moon'
   | 'search'
   | 'zap'
+  | 'clock'
   | CategoryKey;
 
 const GLYPHS: Record<IconName, FeatherName> = {
@@ -62,6 +63,7 @@ const GLYPHS: Record<IconName, FeatherName> = {
   moon: 'moon',
   search: 'search',
   zap: 'zap',
+  clock: 'clock',
   // categories
   food: 'coffee',
   groceries: 'shopping-cart',
