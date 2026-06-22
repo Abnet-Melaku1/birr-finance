@@ -10,6 +10,7 @@ interface DataState extends DataSnapshot {
   setCategory: (id: string, cat: CategoryKey) => void;
   deleteTransaction: (id: string) => void;
   fileSms: (id: string) => void;
+  setSmsCategory: (id: string, cat: CategoryKey) => void;
 }
 
 export const useDataStore = create<DataState>((set, get) => ({
@@ -29,5 +30,8 @@ export const useDataStore = create<DataState>((set, get) => ({
   },
   fileSms: (id) => {
     set({ smsInbox: get().smsInbox.map((s) => (s.id === id ? { ...s, filed: true } : s)) });
+  },
+  setSmsCategory: (id, cat) => {
+    set({ smsInbox: get().smsInbox.map((s) => (s.id === id ? { ...s, cat } : s)) });
   },
 }));

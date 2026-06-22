@@ -12,6 +12,7 @@ export {
   useSetCategory,
   useDeleteTransaction,
   useFileSms,
+  useSetSmsCategory,
   useTotalBalance,
   useIncomeSpending,
   useCategorySpend,

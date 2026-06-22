@@ -27,3 +27,4 @@ export {
   type BudgetStatus,
 } from './derive';
 export { createMockRepo, mockRepo, type DataRepo, type DataSnapshot } from './repo';
+export { txView, type TxView } from './present';

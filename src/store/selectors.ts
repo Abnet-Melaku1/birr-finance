@@ -24,6 +24,7 @@ export const useAddTransaction = () => useDataStore((s) => s.addTransaction);
 export const useSetCategory = () => useDataStore((s) => s.setCategory);
 export const useDeleteTransaction = () => useDataStore((s) => s.deleteTransaction);
 export const useFileSms = () => useDataStore((s) => s.fileSms);
+export const useSetSmsCategory = () => useDataStore((s) => s.setSmsCategory);
 
 export function useTotalBalance() {
   const accounts = useAccounts();
