@@ -1,11 +1,8 @@
 import type { Theme } from './Theme';
 
-/**
- * The ONLY place raw color literals are allowed (ESLint exempts src/theme).
- * Values are verbatim from docs/theme.md — do not invent colors elsewhere.
- */
+// The only place raw color literals live (ESLint exempts src/theme).
 
-/** Bold Orange — light, default. Signature: the big orange dashboard hero. */
+/** Bold Orange — light, default. */
 export const bold: Theme = {
   mode: 'bold',
   bg: '#FBFAF7',
@@ -31,7 +28,7 @@ export const bold: Theme = {
   statusBarIcons: 'dark',
 };
 
-/** Warm Dark — dark-mode counterpart. Hero becomes a raised dark surface. */
+/** Warm Dark — dark-mode counterpart. */
 export const dark: Theme = {
   mode: 'dark',
   bg: '#1A1613',

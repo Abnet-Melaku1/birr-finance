@@ -2,11 +2,7 @@ import type { ViewStyle } from 'react-native';
 
 import type { Theme } from './Theme';
 
-/**
- * Elevation rule (CLAUDE.md §2.4): light theme uses soft shadows; dark theme
- * uses a 1px hairline border and NO shadow. Centralized here so no component
- * re-implements the switch.
- */
+/** Soft shadow in light; 1px hairline border (no shadow) in dark. */
 export function cardElevation(theme: Theme): ViewStyle {
   if (theme.mode === 'dark') {
     return { borderWidth: 1, borderColor: theme.hairline };
@@ -20,7 +16,7 @@ export function cardElevation(theme: Theme): ViewStyle {
   };
 }
 
-/** Orange glow under the raised FAB (both themes). */
+/** Orange glow under the raised FAB. */
 export function fabElevation(theme: Theme): ViewStyle {
   return {
     shadowColor: theme.primary,

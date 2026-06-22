@@ -1,7 +1,4 @@
-/**
- * Domain key unions (CLAUDE.md §5.2–§5.3). Kept in one tiny module so the
- * theme palette, data layer, and parser all share the exact same string keys.
- */
+// Shared domain key unions (palette, data layer, parser all import these).
 export type CategoryKey =
   | 'food'
   | 'groceries'
@@ -17,5 +14,4 @@ export type CategoryKey =
 
 export type BankKey = 'cbe' | 'boa' | 'telebirr' | 'mpesa' | 'awash' | 'cbebirr';
 
-/** Money direction: into an account (income) or out of it (spend/transfer). */
 export type Direction = 'in' | 'out';

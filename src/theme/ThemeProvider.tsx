@@ -12,14 +12,9 @@ interface ThemeContextValue {
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
 
-/**
- * Pure resolver: turn the user preference + OS color scheme into a concrete
- * Theme. Kept separate so it's unit-testable without React.
- */
-/** The OS color scheme as reported by RN's `useColorScheme()`, widened to
- * cover the `null`/`undefined` it can return before the scheme is known. */
 type Scheme = 'light' | 'dark' | 'unspecified' | null | undefined;
 
+/** Pure: preference + OS scheme → concrete Theme. */
 export function resolveTheme(pref: ThemePref, scheme: Scheme): Theme {
   if (pref === 'bold') return THEMES.bold;
   if (pref === 'dark') return THEMES.dark;
@@ -28,7 +23,6 @@ export function resolveTheme(pref: ThemePref, scheme: Scheme): Theme {
 
 interface ThemeProviderProps {
   children: ReactNode;
-  /** Starting preference (persisted pref is injected here once wired). */
   initialPref?: ThemePref;
 }
 

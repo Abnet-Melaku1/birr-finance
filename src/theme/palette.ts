@@ -2,22 +2,14 @@ import { formatHex, type Oklch } from 'culori';
 
 import type { BankKey, CategoryKey } from '@/lib/data/keys';
 
-/**
- * Category & bank brand colors (CLAUDE.md §5.2–§5.3). Authored in OKLCH with a
- * shared chroma/lightness band so the whole set harmonizes (warm-leaning), then
- * serialized to hex for React Native. Components tint these against a surface
- * via `tint()` — they don't use them raw at full strength except as accents.
- *
- * Lives in src/theme so the literals are allowed (ESLint exempts this folder);
- * the data layer references the maps by key.
- */
+// Category & bank brand colors, authored in OKLCH with shared chroma/lightness
+// so the set harmonizes, then serialized to hex for React Native. The data
+// layer references these by key; components tint them against a surface.
 function ok(l: number, c: number, h: number): string {
   const color: Oklch = { mode: 'oklch', l, c, h };
   return formatHex(color) ?? '#000000';
 }
 
-// Category hues span the wheel but share chroma 0.13 / lightness 0.66 so no one
-// color shouts louder than the others.
 const CAT_C = 0.13;
 const CAT_L = 0.66;
 
@@ -35,8 +27,7 @@ export const categoryColors: Record<CategoryKey, string> = {
   income: ok(CAT_L, CAT_C, 152), // green (positive)
 };
 
-// Bank monogram colors — a touch deeper/more saturated so the avatars read as
-// brand marks (still no real logos, per the hard rules).
+// Bank monogram colors — deeper so the avatars read as brand marks (no logos).
 const BANK_C = 0.12;
 const BANK_L = 0.58;
 

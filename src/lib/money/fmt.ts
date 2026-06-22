@@ -1,25 +1,17 @@
 import { SANTIM_PER_BIRR, type Money } from './Money';
 
-/** Unicode minus (U+2212), per the hard rules — not a hyphen-minus. */
-const MINUS = '−';
+const MINUS = '−'; // U+2212, not a hyphen
 
 export interface FmtOptions {
-  /** Show a leading '+' for positive values (default false). */
   sign?: boolean;
-  /** Fractional digits to display (default 0 — whole birr). */
   decimals?: number;
 }
 
-/** Insert thousands separators into an integer string (Hermes-safe; no Intl). */
 function groupThousands(intPart: string): string {
   return intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-/**
- * Format santim as Ethiopian Birr: `Br 12,500` / `+Br 4,500` / `−Br 850`
- * (CLAUDE.md §2.6, docs/theme.md). Rounds to `decimals`; default 0.
- * Implemented without Intl so it's identical under Hermes and in tests.
- */
+/** Santim → `Br 12,500` / `+Br 4,500` / `−Br 850`. Default 0 decimals. */
 export function fmt(amount: Money, options: FmtOptions = {}): string {
   const { sign = false, decimals = 0 } = options;
 
