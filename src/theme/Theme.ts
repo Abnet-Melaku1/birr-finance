@@ -31,5 +31,6 @@ export interface Theme {
   heroSub: string;
 
   chipBg: string;
+  scrim: string; // backdrop behind sheets
   statusBarIcons: 'dark' | 'light';
 }

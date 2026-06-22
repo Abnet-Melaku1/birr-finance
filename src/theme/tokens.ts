@@ -25,6 +25,7 @@ export const bold: Theme = {
   heroInk: '#FFFFFF',
   heroSub: 'rgba(255,255,255,0.78)',
   chipBg: '#F2ECE3',
+  scrim: 'rgba(28,26,24,0.45)',
   statusBarIcons: 'dark',
 };
 
@@ -51,6 +52,7 @@ export const dark: Theme = {
   heroInk: '#F4ECE2',
   heroSub: '#A89C8E',
   chipBg: '#2D261F',
+  scrim: 'rgba(0,0,0,0.6)',
   statusBarIcons: 'light',
 };
 
