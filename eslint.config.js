@@ -32,8 +32,9 @@ module.exports = [
     },
   },
   {
-    // Theme tokens are the single source of truth for color literals.
-    files: ['src/theme/**'],
+    // Theme tokens are the single source of truth for color literals; tests
+    // legitimately use color fixtures.
+    files: ['src/theme/**', '**/*.test.{ts,tsx}'],
     rules: { 'no-restricted-syntax': 'off' },
   },
   {
