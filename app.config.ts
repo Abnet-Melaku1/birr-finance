@@ -9,10 +9,16 @@ import type { ExpoConfig } from 'expo/config';
 const config: ExpoConfig = {
   name: 'Birr',
   slug: 'birr-finance',
+  owner: 'abnetm',
   scheme: 'birr',
   version: '0.1.0',
   orientation: 'portrait',
   userInterfaceStyle: 'automatic',
+  extra: {
+    eas: {
+      projectId: '51ac0ebc-5a22-429f-9219-6744ab50d5d4',
+    },
+  },
   android: {
     package: 'com.marketpal.birr',
     permissions: ['RECEIVE_SMS', 'READ_SMS'],
@@ -28,9 +34,6 @@ const config: ExpoConfig = {
     'expo-dev-client',
     './plugins/withSmsReceiver',
   ],
-  experiments: {
-    typedRoutes: true,
-  },
 };
 
 export default config;
