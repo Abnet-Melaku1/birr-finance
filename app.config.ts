@@ -20,20 +20,17 @@ const config: ExpoConfig = {
     },
   },
   android: {
-    package: 'com.marketpal.birr',
-    permissions: ['RECEIVE_SMS', 'READ_SMS'],
+    package: 'com.birrfinance.app',
+    // SMS permissions are intentionally omitted for now so the dev build
+    // sideloads without the Play Protect "sensitive permissions" block. They
+    // are re-added together with the native SMS receiver module.
+    blockedPermissions: ['android.permission.RECEIVE_SMS', 'android.permission.READ_SMS'],
   },
   ios: {
     supportsTablet: false,
-    bundleIdentifier: 'com.marketpal.birr',
+    bundleIdentifier: 'com.birrfinance.app',
   },
-  plugins: [
-    'expo-router',
-    'expo-font',
-    'expo-sqlite',
-    'expo-dev-client',
-    './plugins/withSmsReceiver',
-  ],
+  plugins: ['expo-router', 'expo-font', 'expo-sqlite', 'expo-dev-client'],
 };
 
 export default config;
