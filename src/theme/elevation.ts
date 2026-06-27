@@ -5,22 +5,14 @@ export function cardElevation(theme: Theme) {
   if (theme.mode === 'dark') {
     return { borderWidth: 1, borderColor: theme.hairline };
   }
+  // Fabric boxShadow (not shadow*/elevation, which renders torn edges on Android).
   return {
-    shadowColor: '#000000',
-    shadowOpacity: 0.05,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 2,
+    boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.04), 0px 6px 16px rgba(0, 0, 0, 0.03)',
   };
 }
 
 /** Orange glow under the raised FAB. */
 export function fabElevation(theme: Theme) {
-  return {
-    shadowColor: theme.primary,
-    shadowOpacity: 0.35,
-    shadowRadius: 20,
-    shadowOffset: { width: 0, height: 8 },
-    elevation: 8,
-  };
+  // `59` ≈ 35% alpha — FAB glow per CLAUDE.md §2.4 (0 8px 20px primary@35%).
+  return { boxShadow: `0px 8px 20px ${theme.primary}59` };
 }
