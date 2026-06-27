@@ -73,5 +73,10 @@
     "prettier": "^3.8.4",
     "react-test-renderer": "19.2.3",
     "typescript": "~5.9.3"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@react-native/gradle-plugin@0.85.3": "patches/@react-native__gradle-plugin@0.85.3.patch"
+    }
   }
 }
